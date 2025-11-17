@@ -10,7 +10,7 @@
 # See /LICENSE for more information.
 #
 
-name: OpenWrt Builder 128M Ubootmod
+name: OpenWrt Builder 128m-Mod
 
 on:
   repository_dispatch:
@@ -27,7 +27,7 @@ env:
   REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-6.6
   REPO_BRANCH: openwrt-24.10-6.6
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: config/128muboot.config
+  CONFIG_FILE: config/128m-Mod.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: false
@@ -214,7 +214,7 @@ jobs:
         id: tag
         if: env.UPLOAD_RELEASE == 'true' && !cancelled()
         run: |
-          FIRMWARE_NAME="128M Ubootmod"
+          FIRMWARE_NAME="128m-Mod"
           BUILD_TIME=$(date +"%Y%m%d-%H%M")
           RELEASE_TAG="${FIRMWARE_NAME// /_}-${BUILD_TIME}"
           echo "release_tag=$RELEASE_TAG" >> $GITHUB_OUTPUT
@@ -260,8 +260,8 @@ jobs:
         uses: dev-drprasad/delete-older-releases@v0.3.4
         if: env.UPLOAD_RELEASE == 'true' && !cancelled()
         with:
-          keep_latest: 15
+          keep_latest: 8
           delete_tags: true
-          release_name_prefix: "Cudy-tr3000-v1_128MUbootmod-"
+          release_name_prefix: "Cudy-tr3000-v1_128m-Mod-"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
